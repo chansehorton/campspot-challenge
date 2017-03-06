@@ -17,7 +17,7 @@ Once all reservations have been processed, a for loop pulls the associated camps
 - install yarn (if you don't already have it) `brew install yarn`
 
 Then simply:
-- clone this repo
+- clone (or fork and clone) this repo
 - `yarn install`
 
 To run the tests (tests contained in spec/functions_spec.js):
