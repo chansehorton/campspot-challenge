@@ -1,6 +1,10 @@
 'use strict'
 
-// processes the results of the filters
+// sitesOpen function passes each reservation through a series of filters to determine if a campsite is available to reserve for a given date range
+//VARIABLES:
+// searchDates (Object containing a startDate (String) and endDate (String) in the format of "YYYY-MM-DD")
+//gaps (Array containing any number of objects, each containing a gapLength (Integer))
+// reservations (Array of objects, each containing a campsiteId (Integer), a startDate (String), and endDate(String) in the format of "YYYY-MM-DD")
 exports.sitesOpen = (searchDates, gaps, reservations) => {
   const { reservationFilter } = require('./resFilter.js');
 

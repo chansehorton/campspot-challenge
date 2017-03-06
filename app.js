@@ -2,6 +2,7 @@
 
 findMeACampsite();
 
+// uses the provided JSON data to process a search for campsite reservations that conform to set "gap rules".
 function findMeACampsite() {
   const { readData } = require('./js/readData.js');
   const { sitesOpen } = require('./js/sitesOpen.js');

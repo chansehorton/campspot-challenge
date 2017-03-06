@@ -1,6 +1,10 @@
 'use strict'
 
-// helper function to easily add or subtract from date values
+// dateMath function allows for easy addition or subtraction from date values
+// VARIABLES:
+// date (String) in any acceptable date format (see Date docs)
+// days (Integer) number of days to add or subtract
+// operation (String) accepts only "add" for addition, and "sub" for subtraction
 exports.dateMath = (date, days, operation) => {
   let tempDate = new Date(date);
 
@@ -17,7 +21,7 @@ exports.dateMath = (date, days, operation) => {
   return result;
 }
 
-// overriding toDateString to output in the same format as given data
+// overriding toDateString to output in the same format as given data, to allow for simple comparison
 Date.prototype.toDateString = function myDateToString() {
   if (isNaN(this)) {
     return 'NaN';

@@ -2,8 +2,13 @@
 
 // ASSUMPTIONS:
 // I assume disallowed gap sizes are consecutive numbers.
+// I assume overlapping reservations have already been eliminated by reservationFilter
 
-// expects that the reservation does not overlap the search dates
+// gapFilter function returns true for reservations which pass the given gap rules, and false for ones which do not.
+//VARIABLES:
+// searchDates (Object containing a startDate (String) and endDate (String) in the format of "YYYY-MM-DD")
+//gaps (Array containing any number of objects, each containing a gapLength (Integer))
+// reservation (Object containing a campsiteId (Integer), a startDate (String), and endDate(String) in the format of "YYYY-MM-DD")
 exports.gapFilter = (searchDates, gaps, reservation) => {
   const { dateMath } = require('./helpers.js');
   // converts the array of gap objects into a basic array

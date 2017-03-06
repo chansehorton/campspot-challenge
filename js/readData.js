@@ -1,6 +1,6 @@
 'use strict'
 
-// pull a JSON file into an object variable
+// pull data from a JSON file into an object variable
 exports.readData = (filename) => {
   const fs = require('fs');
   const path = require('path');
