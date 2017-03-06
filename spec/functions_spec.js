@@ -1,7 +1,7 @@
 'use strict'
 
-const { readData } = require('../js/processInputData.js');
-const { sitesOpen } = require('../js/processResults.js');
+const { readData } = require('../js/readData.js');
+const { sitesOpen } = require('../js/sitesOpen.js');
 const { reservationFilter } = require('../js/resFilter.js');
 const { dateMath } = require('../js/helpers.js');
 const { gapFilter } = require('../js/gapFilter.js');

@@ -2,7 +2,7 @@
 
 // returns the reservations that meet the given gap rules, handles eliminating overlapping dates
 exports.reservationFilter = (searchDates, gaps, reservation) => {
-  const { gapFilter } = require('./gapFilter');
+  const { gapFilter } = require('./gapFilter.js');
 
   if (reservation.endDate >= searchDates.startDate) {
     if (reservation.startDate <= searchDates.endDate) {

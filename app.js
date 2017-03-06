@@ -3,8 +3,8 @@
 findMeACampsite();
 
 function findMeACampsite() {
-  const { readData } = require('./js/processInputData.js');
-  const { sitesOpen } = require('./js/processResults.js');
+  const { readData } = require('./js/readData.js');
+  const { sitesOpen } = require('./js/sitesOpen.js');
 
   const masterData = readData('test-case.json');
   const openSites = sitesOpen(masterData.search, masterData.gapRules,  masterData.reservations);
