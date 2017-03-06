@@ -20,8 +20,8 @@ Then simply:
 - clone this repo
 - `yarn install`
 
-To run the tests:
+To run the tests (tests contained in spec/functions_spec.js):
 - `npm test`
  
-To run the program:
+To run the program (comprised of app.js, and all files in js folder):
 - `npm start`
