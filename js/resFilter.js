@@ -4,12 +4,8 @@
 exports.reservationFilter = (searchDates, gaps, reservation) => {
   const { gapFilter } = require('./gapFilter.js');
 
-  if (reservation.endDate >= searchDates.startDate) {
-    if (reservation.startDate <= searchDates.endDate) {
-      return false;
-    } else {
-      return gapFilter(searchDates, gaps, reservation);
-    }
+  if (reservation.endDate >= searchDates.startDate && reservation.startDate <= searchDates.endDate) {
+    return false;
   } else {
     return gapFilter(searchDates, gaps, reservation);
   }

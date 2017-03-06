@@ -15,15 +15,14 @@ exports.sitesOpen = (searchDates, gaps, reservations) => {
         if (!yesSites.includes(reservations[i].campsiteId)) {
           yesSites.push(reservations[i].campsiteId);
         }
+        // else: It will do nothing and drop through to return yesSites
+      } else if (yesSites.includes(reservations[i].campsiteId)) {
+        // filter failed. if reservation exists in yesSites, remove it and add to noSites.
+        yesSites.splice(yesSites.indexOf(reservations[i].campsiteId), 1);
+        noSites.push(reservations[i].campsiteId);
       } else {
-        if (yesSites.includes(reservations[i].campsiteId)) {
-          // filter failed. if reservation exists in yesSites, remove it and add to noSites.
-          yesSites.splice(yesSites.indexOf(reservations[i].campsiteId), 1);
-          noSites.push(reservations[i].campsiteId);
-        } else {
-          // filter failed. reservation does not exist in yesSites. Add to noSites
-          noSites.push(reservations[i].campsiteId);
-        }
+        // filter failed. reservation does not exist in yesSites. Add to noSites
+        noSites.push(reservations[i].campsiteId);
       }
     }
   }
