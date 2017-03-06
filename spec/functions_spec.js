@@ -1,7 +1,7 @@
 'use strict'
 // const readData = require('../helpers').readData;
 // const addDays = require('../helpers').addDays;
-const { readData, addDays, sitesOpen, gapFilter } = require('../functions');
+const { readData, addDays, sitesOpen, reservationFilter, gapFilter } = require('../functions');
 
 describe('readData', () => {
   it('should return an error if filename does not exist', () => {
@@ -108,9 +108,12 @@ describe('readData', () => {
 //   });
 // });
 
-describe('gapFilter', () => {
-  let start = "2016-06-07";
-  let end = "2016-06-10";
+describe('reservationFilter', () => {
+
+  let search = {
+    startDate: "2016-06-07",
+    endDate: "2016-06-10"
+  };
   let gaps = [
     {
       gapSize: 2
@@ -181,23 +184,43 @@ describe('gapFilter', () => {
   };
 
   it('should return true if a given reservation passes the filter', () => {
-    expect(gapFilter(start, end, gaps, goodRes1)).toBe(true);
-    expect(gapFilter(start, end, gaps, goodRes2)).toBe(true);
-    expect(gapFilter(start, end, gaps, goodRes3)).toBe(true);
-    expect(gapFilter(start, end, gaps, goodRes4)).toBe(true);
-    expect(gapFilter(start, end, gaps, goodRes5)).toBe(true);
-    expect(gapFilter(start, end, gaps, goodRes6)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes1)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes2)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes3)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes4)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes5)).toBe(true);
+    expect(reservationFilter(search, gaps, goodRes6)).toBe(true);
   });
 
   it('should return false if a given reservation fails the filter', () => {
-    expect(gapFilter(start, end, gaps, badRes1)).toBe(false);
-    expect(gapFilter(start, end, gaps, badRes2)).toBe(false);
-    expect(gapFilter(start, end, gaps, badRes3)).toBe(false);
-    expect(gapFilter(start, end, gaps, badRes4)).toBe(false);
-    expect(gapFilter(start, end, gaps, badRes5)).toBe(false);
-    expect(gapFilter(start, end, gaps, badRes6)).toBe(false);
+
+    expect(reservationFilter(search, gaps, badRes1)).toBe(false);
+    expect(reservationFilter(search, gaps, badRes2)).toBe(false);
+    expect(reservationFilter(search, gaps, badRes3)).toBe(false);
+    expect(reservationFilter(search, gaps, badRes4)).toBe(false);
+    expect(reservationFilter(search, gaps, badRes5)).toBe(false);
+    expect(reservationFilter(search, gaps, badRes6)).toBe(false);
   });
-})
+});
+
+describe ('gapFilter', () => {
+  it('should return true if a given reservation passes the filter', () => {
+    expect(gapFilter(search, gap, goodRes1)).toBe(true);
+    expect(gapFilter(search, gap, goodRes2)).toBe(true);
+    expect(gapFilter(search, gap, goodRes3)).toBe(true);
+    expect(gapFilter(search, gap, goodRes4)).toBe(true);
+    expect(gapFilter(search, gap, goodRes5)).toBe(true);
+    expect(gapFilter(search, gap, goodRes6)).toBe(true);
+  });
+
+  it('should return false if a given reservation fails the filter', () => {
+
+    expect(gapFilter(search, gap, badRes1)).toBe(false);
+    expect(gapFilter(search, gap, badRes2)).toBe(false);
+    expect(gapFilter(search, gap, badRes3)).toBe(false);
+    expect(gapFilter(search, gap, badRes4)).toBe(false);
+  });
+});
 
 describe('addDays', () => {
   it('should return a date incremented by a number of days', () => {

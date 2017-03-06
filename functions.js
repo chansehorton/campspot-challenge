@@ -31,19 +31,34 @@ exports.sitesOpen = (startDate, endDate, reservations) => {
   return openSites;
 }
 
-// returns the reservations that meet the given gap rules
-exports.gapFilter = (startDate, endDate, gaps, reservation) => {
-  if (startDate <= reservation.endDate || endDate >= reservation.startDate) {
-    return false;
+// returns the reservations that meet the given gap rules, handles eliminating overlapping dates
+exports.reservationFilter = (searchDates, gaps, reservation) => {
+  if (reservation.endDate >= searchDates.startDate) {
+    if (reservation.startDate <= searchDates.endDate) {
+      return false;
+    } else {
+      console.log('after search end date', reservation);
+      for (let i=0; i<gaps.length; i++) {
+        return gapFilter(searchDates, gaps[i], reservation);
+      }
+    }
+  } else {
+    console.log('before search start date', reservation);
+    for (let i=0; i<gaps.length; i++) {
+      return gapFilter(searchDates, gaps[i], reservation);
+    }
   }
+};
 
-  for (let i=0; i<gaps.length; i++) {
-
-
+// expects that the reservation does not overlap the search dates
+exports.gapFilter = (searchDates, gap, reservation) => {
+  if (searchDates.startDate > reservation.endDate) {
+    //reservation is before search range
+    
+  } else {
+    //reservation is after search range
   }
-
-  return true;
-}
+};
 
 // helper function to allow easily adding days to a date
 exports.addDays = (date, days) => {
