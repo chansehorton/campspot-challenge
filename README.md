@@ -1,6 +1,6 @@
 # campspot-challenge
 
-This app searches through a given JSON file of campground reservation data, and returns campsites with reservation availability, given gap rules of 2 and 3 days. For the uninitiated, gap rules force not only the requested days to be available, but enforces that a reservation cannot leave gaps of a certain number of days on either side.
+This program searches through a given JSON file of campground reservation data, and returns campsites with reservation availability, given gap rules of 2 and 3 days. For the uninitiated, gap rules force not only the requested days to be available, but enforces that a reservation cannot leave gaps of a certain number of days on either side.
 
 My attempt at solving this problem first pulls the JSON file into memory, then parses each existing reservation in the following manner:
  - eliminate any reservations that directly overlap the search dates
