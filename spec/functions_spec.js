@@ -1,6 +1,10 @@
 'use strict'
 
-const { readData, dateMath, sitesOpen, reservationFilter, gapFilter } = require('../functions');
+const { readData } = require('../js/processInputData.js');
+const { sitesOpen } = require('../js/processResults.js');
+const { reservationFilter } = require('../js/resFilter.js');
+const { dateMath } = require('../js/helpers.js');
+const { gapFilter } = require('../js/gapFilter.js');
 
 describe('readData', () => {
   it('should return an error if filename does not exist', () => {
@@ -40,89 +44,89 @@ describe('sitesOpen', () => {
   });
 });
 
-// describe('reservationFilter with search dates of 2016-06-07 - 10 and gaps of 2 and 3', () => {
-//     it('should return true with a reservation of 01-02', () => {
-//       expect(reservationFilter(search, gaps, goodRes1)).toBe(true);
-//     });
-//     it('should return true with a reservation of 16-18', () => {
-//       expect(reservationFilter(search, gaps, goodRes2)).toBe(true);
-//     });
-//     it('should return true with a reservation of 01-05', () => {
-//       expect(reservationFilter(search, gaps, goodRes3)).toBe(true);
-//     });
-//     it('should return true with a reservation of 01-06', () => {
-//       expect(reservationFilter(search, gaps, goodRes4)).toBe(true);
-//     });
-//     it('should return true with a reservation of 11-12', () => {
-//       expect(reservationFilter(search, gaps, goodRes5)).toBe(true);
-//     });
-//     it('should return true with a reservation of 12-14', () => {
-//       expect(reservationFilter(search, gaps, goodRes6)).toBe(true);
-//     });
-//     it('should return false with a reservation of 13-15', () => {
-//       expect(reservationFilter(search, gaps, badRes1)).toBe(false);
-//     });
-//     it('should return false with a reservation of 14-16', () => {
-//       expect(reservationFilter(search, gaps, badRes2)).toBe(false);
-//     });
-//     it('should return false with a reservation of 02-04', () => {
-//       expect(reservationFilter(search, gaps, badRes3)).toBe(false);
-//     });
-//     it('should return false with a reservation of 01-03', () => {
-//       expect(reservationFilter(search, gaps, badRes4)).toBe(false);
-//     });
-//     it('should return false with a reservation of 01-07', () => {
-//       expect(reservationFilter(search, gaps, badRes5)).toBe(false);
-//     });
-//     it('should return false with a reservation of 09-12', () => {
-//       expect(reservationFilter(search, gaps, badRes6)).toBe(false);
-//     });
-// });
+describe('reservationFilter with search dates of 2016-06-07 - 10 and gaps of 2 and 3', () => {
+    it('should return true with a reservation of 01-02', () => {
+      expect(reservationFilter(search, gaps, goodRes1)).toBe(true);
+    });
+    it('should return true with a reservation of 16-18', () => {
+      expect(reservationFilter(search, gaps, goodRes2)).toBe(true);
+    });
+    it('should return true with a reservation of 01-05', () => {
+      expect(reservationFilter(search, gaps, goodRes3)).toBe(true);
+    });
+    it('should return true with a reservation of 01-06', () => {
+      expect(reservationFilter(search, gaps, goodRes4)).toBe(true);
+    });
+    it('should return true with a reservation of 11-12', () => {
+      expect(reservationFilter(search, gaps, goodRes5)).toBe(true);
+    });
+    it('should return true with a reservation of 12-14', () => {
+      expect(reservationFilter(search, gaps, goodRes6)).toBe(true);
+    });
+    it('should return false with a reservation of 13-15', () => {
+      expect(reservationFilter(search, gaps, badRes1)).toBe(false);
+    });
+    it('should return false with a reservation of 14-16', () => {
+      expect(reservationFilter(search, gaps, badRes2)).toBe(false);
+    });
+    it('should return false with a reservation of 02-04', () => {
+      expect(reservationFilter(search, gaps, badRes3)).toBe(false);
+    });
+    it('should return false with a reservation of 01-03', () => {
+      expect(reservationFilter(search, gaps, badRes4)).toBe(false);
+    });
+    it('should return false with a reservation of 01-07', () => {
+      expect(reservationFilter(search, gaps, badRes5)).toBe(false);
+    });
+    it('should return false with a reservation of 09-12', () => {
+      expect(reservationFilter(search, gaps, badRes6)).toBe(false);
+    });
+});
 
-// describe ('gapFilter search for 2016-06-07 - 2016-06-10 and gaps of 2 and 3', () => {
-//   it('should return true with a reservation of 01-02', () => {
-//     expect(gapFilter(search, gaps, goodRes1)).toBe(true);
-//   });
-//   it('should return true with a reservation of 16-18', () => {
-//     expect(gapFilter(search, gaps, goodRes2)).toBe(true);
-//   });
-//   it('should return true with a reservation of 01-05', () => {
-//     expect(gapFilter(search, gaps, goodRes3)).toBe(true);
-//   });
-//   it('should return true with a reservation of 01-06', () => {
-//     expect(gapFilter(search, gaps, goodRes4)).toBe(true);
-//   });
-//   it('should return true with a reservation of 11-12', () => {
-//     expect(gapFilter(search, gaps, goodRes5)).toBe(true);
-//   });
-//   it('should return true with a reservation of 12-14', () => {
-//     expect(gapFilter(search, gaps, goodRes6)).toBe(true);
-//   });
-//   it('should return false with a reservation of 13-15', () => {
-//     expect(gapFilter(search, gaps, badRes1)).toBe(false);
-//   });
-//   it('should return false with a reservation of 14-16', () => {
-//     expect(gapFilter(search, gaps, badRes2)).toBe(false);
-//   });
-//   it('should return false with a reservation of 02-04', () => {
-//     expect(gapFilter(search, gaps, badRes3)).toBe(false);
-//   });
-//   it('should return false with a reservation of 01-03', () => {
-//     expect(gapFilter(search, gaps, badRes4)).toBe(false);
-//   });
-// });
+describe ('gapFilter search for 2016-06-07 - 2016-06-10 and gaps of 2 and 3', () => {
+  it('should return true with a reservation of 01-02', () => {
+    expect(gapFilter(search, gaps, goodRes1)).toBe(true);
+  });
+  it('should return true with a reservation of 16-18', () => {
+    expect(gapFilter(search, gaps, goodRes2)).toBe(true);
+  });
+  it('should return true with a reservation of 01-05', () => {
+    expect(gapFilter(search, gaps, goodRes3)).toBe(true);
+  });
+  it('should return true with a reservation of 01-06', () => {
+    expect(gapFilter(search, gaps, goodRes4)).toBe(true);
+  });
+  it('should return true with a reservation of 11-12', () => {
+    expect(gapFilter(search, gaps, goodRes5)).toBe(true);
+  });
+  it('should return true with a reservation of 12-14', () => {
+    expect(gapFilter(search, gaps, goodRes6)).toBe(true);
+  });
+  it('should return false with a reservation of 13-15', () => {
+    expect(gapFilter(search, gaps, badRes1)).toBe(false);
+  });
+  it('should return false with a reservation of 14-16', () => {
+    expect(gapFilter(search, gaps, badRes2)).toBe(false);
+  });
+  it('should return false with a reservation of 02-04', () => {
+    expect(gapFilter(search, gaps, badRes3)).toBe(false);
+  });
+  it('should return false with a reservation of 01-03', () => {
+    expect(gapFilter(search, gaps, badRes4)).toBe(false);
+  });
+});
 
-// describe('dateMath', () => {
-//   it('should return a date incremented by a number of days', () => {
-//     expect(dateMath("2016-06-07", 2, 'add')).toBe("2016-06-09");
-//   });
-//   it('should return a date decremented by a number of days', () => {
-//     expect(dateMath("2016-06-07", 2, 'sub')).toBe("2016-06-05");
-//   });
-//   it('should return an Error if any other value is substituted for sub or add', () => {
-//     expect(dateMath("2016-06-07", 2, 'blah')).toEqual(new Error('Invalid operation!'));
-//   });
-// });
+describe('dateMath', () => {
+  it('should return a date incremented by a number of days', () => {
+    expect(dateMath("2016-06-07", 2, 'add')).toBe("2016-06-09");
+  });
+  it('should return a date decremented by a number of days', () => {
+    expect(dateMath("2016-06-07", 2, 'sub')).toBe("2016-06-05");
+  });
+  it('should return an Error if any other value is substituted for sub or add', () => {
+    expect(dateMath("2016-06-07", 2, 'blah')).toEqual(new Error('Invalid operation!'));
+  });
+});
 
 const search = {
   startDate: "2016-06-07",
@@ -225,7 +229,7 @@ const testCaseData = {
     },
     {
       "id": 6,
-      "name": "Teddy Rosevelt Tent Site"
+      "name": "Teddy Roosevelt Tent Site"
     },
     {
       "id": 7,

@@ -1,9 +1,19 @@
 'use strict'
 
-const { readData, sitesOpen } = require('../functions');
+findMeACampsite();
 
-const masterData = readData('test-case.json');
+function findMeACampsite() {
+  const { readData } = require('./js/processInputData.js');
+  const { sitesOpen } = require('./js/processResults.js');
 
-const openSites = sitesOpen(masterData.search.startDate, masterData.search.endDate, masterData.reservations);
+  const masterData = readData('test-case.json');
+  const openSites = sitesOpen(masterData.search, masterData.gapRules,  masterData.reservations);
 
-console.log(openSites);
+  for (let i=0; i<openSites.length; i++) {
+    for (let k=0; k<masterData.campsites.length; k++) {
+      if (masterData.campsites[k].id === openSites[i]) {
+        console.log(masterData.campsites[k].name);
+      }
+    }
+  }
+}
